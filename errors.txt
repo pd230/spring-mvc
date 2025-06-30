@@ -1,0 +1,49 @@
+1.
+   Downloading external resources is disabled. - error occurs in web.xml
+   : it is because dynamic module and utility module conflict
+     solution : go preferences -> facet -> change dynamic module version and java version if needed According 
+     to project preferences.
+     
+2.
+   Could not publish server configuration for Tomcat v9.0 Server at localhost.
+                       Multiple Contexts have a path of "/springMVC".
+                       
+   solution : springMVC deployed on TomCat server two times
+                       
+3. 
+   servlet-class references to "org.springframework.web.servlet.DispatcherServlet" 
+   that does not implement interface javax.servlet
+   
+4. 
+   downloading from external resources is disabled
+   solution : Go to top bar : Window -> Preference -> Maven -> tick the option 
+   ('download artifact javadoc'). Thats it 'Apply & Close'.
+        or 
+   Window -> Preference -> XML(WWD) -> XML catalog -> download external resources -> tick the option 
+   -> Thats it 'Apply & Close'.
+   
+5.
+   Multiple annotations found at this line:
+	- TargetNamespace.1: Expecting namespace 'https://www.springframework.org/schema/beans', but 
+	 the target namespace of the schema document is 'http://www.springframework.org/schema/beans'.
+	- TargetNamespace.1: Expecting namespace 'https://www.springframework.org/schema/mvc', but the 
+	 target namespace of the schema document is 'http://www.springframework.org/schema/mvc'.
+	 
+	 solution : change "https" to "http" of all xmlns and schemaLocations
+	 
+6.
+   org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 
+   'alien': Unsatisfied dependency expressed through method 'setLaptop3' parameter 0: Cannot find 
+   class [org.springframework.web.servlet.InternalResourceViewResolver] for bean with name 'org.springframework.web.servlet.InternalResourceViewResolver#0' defined in ServletContext resource [/WEB-INF/springDispatcherServlet-servlet.xml]
+	
+7. 
+   the prefix "mvc" for element "mvc:annotation-driven" is not bound.
+   ex : <mvc:annotation-driven/>
+   reason : That happens when either of these lines is missing or misspelled in the <beans …>
+   solution : 
+         The namespace declaration
+                 xmlns:mvc="https://www.springframework.org/schema/mvc"
+         The matching schema entry in xsi:schemaLocation
+                 https://www.springframework.org/schema/mvc
+                 https://www.springframework.org/schema/mvc/spring-mvc.xsd
+   
