@@ -7,6 +7,7 @@
 <title>Home</title>
 </head>
 <body>
-Result :  ${no3}
+  Result :  ${no3}<br>
+  ${users}
 </body>
 </html>

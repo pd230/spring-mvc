@@ -46,4 +46,79 @@
          The matching schema entry in xsi:schemaLocation
                  https://www.springframework.org/schema/mvc
                  https://www.springframework.org/schema/mvc/spring-mvc.xsd
+                 
+8.
+   Server Tomcat v10.1 Server at localhost was unable to start within 60 seconds. If the server requires 
+   more time,try increasing the timeout in the server editor.
+   
+   solution : 
+          Steps to Increase Server Timeout in Eclipse:
+          Open the Servers View
+               Go to Window → Show View → Servers
+               (Or press Alt + Shift + Q, then S)
+          Double-click on the Tomcat Server listed (e.g., Tomcat v10.1 Server at localhost).
+          The Server Editor will open.
+          Scroll Down to the section labeled:
+               Timeouts
+          Change the value of:
+               Start to something like 120 seconds (or higher depending on your app)
+               Stop can be increased if needed
+               
+9.
+    Could not obtain transaction-synchronized Session for current thread
+    
+
+📅 Date: 01 July 2025
+
+--------------------------------------------------------------
+1. ❌ Tomcat Startup Timeout Error
+--------------------------------------------------------------
+Message:
+Server Tomcat v10.1 Server at localhost was unable to start within 60 seconds.
+
+Cause:
+- Tomcat taking too long to start (slow DB or app config)
+
+Fix:
+- Increased timeout in Eclipse Servers view to 120 seconds
+
+--------------------------------------------------------------
+2. ❌ HTTP 500 – HibernateException: Could not obtain transaction-synchronized Session for current thread
+--------------------------------------------------------------
+Stack Trace Snippet:
+org.hibernate.HibernateException: Could not obtain transaction-synchronized Session for current thread
+
+Cause:
+- `sessionFactory.getCurrentSession()` used without an active Spring transaction
+- Wrong `@Transactional` import (`jakarta.transaction.Transactional`)
+
+--------------------------------------------------------------
+3. ❌ XML Schema Typo
+--------------------------------------------------------------
+Incorrect:
+http://www.springframework.org/schema/context/spring-tx.xsd
+
+Correct:
+http://www.springframework.org/schema/tx/spring-tx.xsd
+
+Fix:
+- Corrected schema location in `springDispatcherServlet-servlet.xml`
+
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+5. ❌ PostgreSQL ALTER TABLE Keyword Conflict
+--------------------------------------------------------------
+Query:
+ALTER TABLE "user" RENAME TO user_data;
+
+Error:
+ERROR: syntax error at or near "user"
+
+Cause:
+- `user` is a reserved keyword in PostgreSQL
+
+==============================================================
+
+
    
