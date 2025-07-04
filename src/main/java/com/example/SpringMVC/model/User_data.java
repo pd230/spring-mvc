@@ -2,8 +2,14 @@ package com.example.SpringMVC.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 
 @Entity
+// use only when persisting user into the database using namedQuery 
+@NamedQuery(
+	name = "User_data.insert",
+    query = "insert into User_data(uid, uname) values(:uid, :uname)"
+)
 public class User_data {
 	
 	@Id

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,15 +32,28 @@ public class HomeController {
 	}
 
 //	6 code will work without passing @ModelAttribute . we can call it by "user" attribute in jsp
-	@RequestMapping("/addUser")
-	public String addUser(User_data u) {
-		return "LoginResult";
-	}
+//	@RequestMapping("/addUser")
+//	public String addUser(User_data u) {
+//		return "LoginResult";
+//	}
 
 	@RequestMapping("/getusers")
 	public String getAlien(Model m) {
 		m.addAttribute("users", userdao.getAll());
 		return "result";
 	}
+	
+	@RequestMapping("/getuser/{id}")
+	public String getUser(Model m, @PathVariable("id") int id) {
+		m.addAttribute("SingleUser", userdao.getOne(id));
+		return "result";
+	}
+	
+	@RequestMapping("/addUser")
+	public String addUser(User_data u) {
+		userdao.save(u);
+		return "result";
+	}
+	
 
 }
